@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電脳おみくじ Wiki</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="container">
+            <header>
+                <h1>電脳おみくじ (Cyber Oracle)</h1>
+                <p class="site-notice">[STATUS: ONLINE] - システムバージョン 2.0.48</p>
+            </header>
+
+            <main>
+                <div class="wiki-section">
+                    <h2>>> 概要</h2>
+                    <p>当システムは、量子乱数とAIによりユーザーの精神状態を解析し、哲学的な助言（デバッグ）と適合する液体（飲み物）を提示するプロトコルです。</p>
+                </div>
+
+                <div class="wiki-section input-area">
+                    <h2>>> 運命を問う</h2>
+                    <p>現在の気分、悩み、または単一のキーワードを入力してください。</p>
+                    <input type="text" id="userInput" placeholder="例：「なんでもできそう」「少し疲れた」">
+                    <button id="submitBtn">>> 解析を実行 (Run Analysis)</button>
+                </div>
+
+                <div id="bbsLog" class="wiki-section">
+                    <h2>>> 最近の接続ログ (Recent Logs)</h2>
+                    <div id="logList">
+                        </div>
+                </div>
+
+
+                <div id="resultArea" class="wiki-section hidden">
+                    <h2>>> 解析結果 (Analysis Result)</h2>
+                    <div id="loading" class="hidden">
+                        <div class="spinner"></div>
+                        <span>[STATUS: SCANNING...]</span>
+                    </div>
+                    
+                    <div id="receiptWrapper" class="hidden">
+                        <div id="receiptContainer">
+                            <p class="receipt-header">[SYSTEM LOG: ANALYSIS COMPLETE]</p>
+                            <div id="philosophy"></div>
+                            <div id="retryBtnArea">
+                                <button id="retryBtn">>> 再起動</button>
+                                <button id="shareBtn">>> 結果を画像で保存 (Share)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div class="ad-section">
+            <p class="ad-label">[SPONSORED LINK]</p>
+            <a href="あなたのリンク先" target="_blank" class="ad-content">
+                ここに広告テキストやバナー。
+            </a>
+        </div>
+    </div>
+
+    <div id="imageModal" class="hidden">
+        <div class="modal-content">
+            <p>画像を長押し（または右クリック）で保存してください。</p>
+            <img id="generatedImage" src="" alt="おみくじ結果">
+            <button id="closeModal">>> 閉じる</button>
+        </div>
+    </div>
+
+    <audio id="seTyping" src="https://assets.mixkit.co/active_storage/sfx/2301/2301-preview.mp3" preload="auto"></audio>
+    <audio id="seClick" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
+    <audio id="seComplete" src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3" preload="auto"></audio>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

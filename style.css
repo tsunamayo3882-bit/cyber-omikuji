@@ -1,0 +1,306 @@
+/* ベーススタイル */
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+    transition: background-color 2s ease;
+}
+
+.main-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* style.css の以下の部分を書き換え・追記 */
+
+.container {
+    /* 背景を透明、または継承させる */
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 30px;
+    border: 1px solid #e5e5e5;
+    transition: background-color 2s ease; /* ここにもアニメーションを追加 */
+}
+
+.wiki-section {
+    margin-bottom: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+    /* セクションも少し透けさせる */
+    background-color: rgba(252, 252, 252, 0.5); 
+}
+
+/* 接続コードなどのルビを確実に入れ子にするための設定 */
+ruby {
+    display: inline-flex;
+    flex-direction: column-reverse;
+    vertical-align: bottom;
+    line-height: 1;
+}
+
+rt {
+    display: block;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 0.2em; /* 文字の上に隙間を作る */
+}
+
+/* ヘッダー */
+header {
+    border-bottom: 1px solid #a2a9b1;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-top: 0;
+    color: #000;
+}
+
+.site-notice {
+    font-size: 0.8rem;
+    color: #666;
+    font-family: monospace;
+}
+
+/* Wikiセクション */
+.wiki-section {
+    margin-bottom: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+    background-color: #fcfcfc;
+}
+
+/* BBSログ */
+#bbsLog {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #555;
+    height: 100px;
+    overflow-y: hidden; /* 自動スクロール用 */
+}
+
+#logList div {
+    border-bottom: 1px dashed #ccc;
+    padding: 2px 0;
+}
+
+/* 入力エリア */
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #a2a9b1;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #f8f9fa;
+    border: 1px solid #a2a9b1;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #fff;
+}
+
+/* ローディング */
+.hidden { display: none !important; }
+
+#loading {
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+    color: #666;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-top: 2px solid #333;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* レシートContainer（画像生成エリア） */
+#receiptWrapper {
+    margin-top: 20px;
+    border-top: 2px dashed #999;
+    padding-top: 20px;
+}
+
+#receiptContainer {
+    background-color: #fff; /* 古い感熱紙風にするなら #fffae0 など */
+    color: #222;
+    padding: 30px;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: 'Hiragino Mincho ProN', 'serif'; /* レシートっぽく明朝体 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid #ccc;
+}
+
+.receipt-header {
+    font-family: monospace;
+    text-align: center;
+    border-bottom: 1px dashed #555;
+    padding-bottom: 10px;
+    color: #555;
+}
+
+/* ルビの修正：文字の上へ */
+#philosophy {
+    line-height: 2.5; /* 行間を広げてルビのスペースを確保 */
+}
+
+#philosophy ruby {
+    ruby-position: over; /* 明示的に文字の上に配置 */
+}
+
+#philosophy ruby rt {
+    font-size: 0.6em;
+    color: #666;
+}
+
+/* レシート内のボタンエリア（画像生成時は隠す） */
+#retryBtnArea {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#retryBtn, #shareBtn {
+    background: none;
+    border: 1px solid #999;
+    font-size: 0.8rem;
+    color: #555;
+    margin: 0;
+}
+
+/* モーダル */
+#imageModal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white; padding: 20px; text-align: center;
+    max-width: 90%; max-height: 90%; overflow-y: auto;
+}
+
+#generatedImage {
+    max-width: 100%; margin: 10px 0;
+    border: 1px solid #ccc;
+}
+
+#closeModal { margin-top: 10px; }
+
+.ad-section {
+    margin-top: 40px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    background-color: #fff;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.ad-label {
+    margin: 0;
+    color: #999;
+    font-family: monospace;
+}
+
+.ad-content {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.ad-content:hover {
+    text-decoration: underline;
+}
+
+/* --- レスポンシブ対応 (Mobile Optimization) --- */
+@media (max-width: 600px) {
+    .main-wrapper {
+        padding: 10px; /* 余白を削って画面を広く使う */
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.4rem; /* タイトルを少し小さく */
+    }
+
+    /* 入力欄を横幅いっぱいに */
+    input[type="text"] {
+        width: 100%;
+        box-sizing: border-box; /* パディングを含めた幅にする */
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100%;
+        margin-left: 0;
+        box-sizing: border-box;
+    }
+
+    /* レシートのサイズ調整 */
+    #receiptContainer {
+        width: 95%;
+        padding: 20px 15px;
+        box-sizing: border-box;
+    }
+
+    /* スマホではルビの行間をさらに調整 */
+    #philosophy {
+        font-size: 0.95rem;
+        line-height: 2.8;
+    }
+
+    /* BBSログの高さを少し抑える */
+    #bbsLog {
+        height: 80px;
+    }
+    .ad-section {
+        margin-top: 30px; /* 上の要素との間隔を少し詰める */
+        padding: 15px 10px; /* 上下のパディングを広げてタップしやすく */
+        background-color: rgba(255, 255, 255, 0.9); /* 背景の変化に合わせる */
+    }
+
+    .ad-label {
+        font-size: 0.65rem; /* ラベルは邪魔にならない程度に小さく */
+        margin-bottom: 4px;
+    }
+
+    .ad-content {
+        font-size: 0.85rem; /* 本文はスマホで読みやすいサイズに拡大 */
+        display: block; /* リンクエリアを広げて「押しやすく」する */
+        line-height: 1.4;
+        word-break: break-all; /* 長いURLなどが入ってもはみ出さないように */
+    }
+}
