@@ -101,7 +101,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     receiptWrapper.classList.add('hidden');
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flashs" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         
         // プロンプト（ルビとレシート構成）
         const prompt = `
