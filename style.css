@@ -180,6 +180,16 @@ button:hover {
     font-size: 0.6em;
     color: #666;
 }
+.action-btn.share {
+    background-color: #1DA1F2; /* X(Twitter)カラー */
+    color: white;
+    border: none;
+}
+
+.action-btn.share:hover {
+    background-color: #1a91da;
+    opacity: 0.9;
+}
 
 /* レシート内のボタンエリア（画像生成時は隠す） */
 #retryBtnArea {

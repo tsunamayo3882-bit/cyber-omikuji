@@ -186,6 +186,26 @@ document.getElementById('shareBtn').addEventListener('click', () => {
         // ボタンエリアを元に戻す
         btnArea.style.display = 'flex';
     });
+    // SNS共有ボタンの処理
+document.getElementById('share-btn').addEventListener('click', async () => {
+    const shareData = {
+        title: '電脳おみくじ - Cyber Oracle',
+        text: 'AIが私の魂をデバッグした結果、最適飲料はこれでした。',
+        url: window.location.href
+    };
+
+    try {
+        if (navigator.share) {
+            await navigator.share(shareData);
+        } else {
+            // PCなどWeb Share API非対応の場合はTwitterへ飛ばす（上のコード）
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.text)}&url=${encodeURIComponent(shareData.url)}`;
+            window.open(twitterUrl, '_blank');
+        }
+    } catch (err) {
+        console.error('Share failed:', err);
+    }
+});
 });
 
 // モーダルを閉じる
