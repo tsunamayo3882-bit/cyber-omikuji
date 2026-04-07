@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const API_KEY = "AIzaSyCrAwr15z-cQFSN6yBPSs5zAakozUTA--M"; // ここにAPIキーを貼り付け
+const API_KEY = "AIzaSyDGOE5ggYv-470nEDVaDPnXacpo9GuNaaU"; // ここにAPIキーを貼り付け
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 // BBSのダミーログ（初期表示用）
