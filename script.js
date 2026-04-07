@@ -1,6 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const API_KEY = "AIzaSyAwugtqAy4uw5c-G8ZGeemExEYNHwWFg1U"; // ここにAPIキーを貼り付け
+// キーを直接書かず、この1行に変えて保存・Pushしてください
+const API_KEY = "dummy_key"; 
+// ※あとでVercel側で本物を注入するので、ここでは適当な文字でOK
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 // BBSのダミーログ（初期表示用）
@@ -99,7 +101,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     receiptWrapper.classList.add('hidden');
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-preview" });
         
         // プロンプト（ルビとレシート構成）
         const prompt = `
