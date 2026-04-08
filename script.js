@@ -1,10 +1,3 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-// キーを直接書かず、この1行に変えて保存・Pushしてください
-const API_KEY = "dummy_key"; 
-// ※あとでVercel側で本物を注入するので、ここでは適当な文字でOK
-const genAI = new GoogleGenerativeAI(API_KEY);
-
 // BBSのダミーログ（初期表示用）
 const dummyLogs = [
     "[LOG: A5B2] Input: 少し疲れた -> Result: ミルクを推奨",
@@ -85,8 +78,6 @@ async function typeWriter(element, text, speed = 30) {
 }
 
 // メイン処理：解析実行
-document.getElementById('submitBtn').addEventListener('click', async function() {
-    playSe(seClick); // クリック音
     const userInput = document.getElementById('userInput').value;
     const resultArea = document.getElementById('resultArea');
     const loading = document.getElementById('loading');
@@ -100,24 +91,38 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     loading.classList.remove('hidden');
     receiptWrapper.classList.add('hidden');
 
-    try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        
-        // プロンプト（ルビとレシート構成）
-        const prompt = `
-        あなたは「電脳おみくじ」です。システムログ風に、中学生でも分かる言葉で答えて。
-        入力「${userInput}」に対し、以下の構成で出力して。
-        1. 魂のデバッグ（哲学的な短い助言）:
-           ・「君は今〜」などのような親しみやすいが不思議な口調で。
-        2. 適合する液体（飲み物とその理由）:
-           ・【 飲み物名 】理由〜
-        3. 接続コード:
-           ・【 4桁の英数字 】
-        `;
+document.getElementById('submitBtn').addEventListener('click', async function() {
+    playSe(seClick);
+    const userInput = document.getElementById('userInput').value;
+    const philosophy = document.getElementById('philosophy');
+    // ...中略（UIの初期化など）...
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        let text = response.text();
+    try {
+        // ❌ Geminiを直接呼んでいたコードを削除
+        // const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        // const result = await model.generateContent(prompt);
+
+        // ✅ 代わりに自分の作ったAPI（バックエンド）を叩く
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                prompt: `
+                あなたは「電脳おみくじ」です。システムログ風に、中学生でも分かる言葉で答えて。
+                入力「${userInput}」に対し、以下の構成で出力して。
+                1. 魂のデバッグ（哲学的な短い助言）:
+                2. 適合する液体（飲み物とその理由）:
+                3. 接続コード:
+                `
+            })
+        });
+
+        const data = await response.json();
+        if (data.error) throw new Error(data.error);
+        
+        let text = data.text; // これでおみくじの結果が取れる！
+
+        
 
         // 不要なmarkdown（ ```html など）が混ざる場合の除去
         text = text.replace(/```html|```/g, '');
