@@ -1,5 +1,6 @@
 // Vercel Serverless Function
-import { GoogleGenerativeAI } from "@google/generative-ai";
+// api/chat.js の冒頭
+const { GoogleGenerativeAI } = require("@google/generative-ai"); // import ではなく require を試す
 
 export default async function handler(req, res) {
   // 1. 環境変数からキーを取得（ブラウザには見えない！）
