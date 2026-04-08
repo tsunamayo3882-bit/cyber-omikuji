@@ -95,7 +95,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 prompt: `
-                あなたは「電脳おみくじ」です。システムログ風に、中学生でも分かる言葉で答えて。
+                あなたは「電脳おみくじ」です。システムログ風に、わかりやすい言葉で答えて。
                 入力「${userInput}」に対し、以下の構成で出力して。
                 1. 魂のデバッグ（哲学的な短い助言）:
                 2. 適合する液体（飲み物とその理由）:
